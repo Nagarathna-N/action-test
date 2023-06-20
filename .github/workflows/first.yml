@@ -3,14 +3,14 @@ run-name: instance
 on: [push]
 
 jobs:
-  build:
+ build:
   
-    strategy:
-       matrix:
-         version: ["3.7", "3.8", "3.9"]
+   strategy:
+    matrix:
+     version: ["3.7", "3.8", "3.9"]
          
-     runs-on: ubuntu-latest
-     steps: 
+   runs-on: ubuntu-latest
+   steps: 
        - name: echoing some information
          run: echo "Hello world"
        - name: Checkout
@@ -20,3 +20,9 @@ jobs:
            python-version: ${{matrix.version }} //job will run three times in different versions
        - run: python -m pip install Flask
        - run: python test.py
+       
+ deploy:
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+   - run: echo "Deploying"
