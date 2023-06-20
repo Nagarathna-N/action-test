@@ -6,5 +6,8 @@ jobs:
   say-hello:
      runs-on: ubuntu-latest
      steps: 
-       - run: echo "Hello world"
+       - name: echoing some information
+         run: echo "Hello world"
+       - name: Checkout
+         uses: actions/checkout@v3.5.3
        -run: python test.py
